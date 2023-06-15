@@ -3,7 +3,7 @@ import db from '../config/database.js';
 
 const { DataTypes } = Sequelize;
 
-const Medicines = db.define('Medicines', {
+const Medicines = db.define('medicines', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
