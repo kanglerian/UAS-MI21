@@ -5,7 +5,7 @@ FROM node:latest
 WORKDIR /app
 
 # Salin package.json dan package-lock.json ke direktori kerja
-COPY package*.json ./app
+COPY package*.json ./
 
 # Install dependensi aplikasi
 RUN npm install
