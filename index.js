@@ -19,23 +19,39 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', async (req, res) => {
-  const books = await Model.Books.findAll();
-  return res.json(books);
+  try {
+    const books = await Model.Books.findAll();
+    return res.json(books);
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.get('/schools', async (req, res) => {
-  const schools = await Model.Schools.findAll();
-  return res.json(schools);
+  try {
+    const schools = await Model.Schools.findAll();
+    return res.json(schools);
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.get('/sellers', async (req, res) => {
-  const sellers = await Model.Sellers.findAll();
-  return res.json(sellers);
+  try {
+    const sellers = await Model.Sellers.findAll();
+    return res.json(sellers);
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.get('/medicines', async (req, res) => {
-  const medicines = await Model.Medicines.findAll();
-  return res.json(medicines);
+  try {
+    const medicines = await Model.Medicines.findAll();
+    return res.json(medicines);
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.get('/books/:id', async (req, res) => {
@@ -98,12 +114,16 @@ app.post('/books', [
   body('harga', 'Harga tidak boleh kosong').notEmpty().isInt(),
   body('stok', 'Stok tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
+    }
+    await Model.Books.create(req.body);
+    return res.json({ message: 'Buku berhasil ditambahkan!' });
+  } catch (error) {
+    return res.json(error)
   }
-  await Model.Books.create(req.body);
-  return res.json({ message: 'Buku berhasil ditambahkan!' });
 });
 
 app.post('/schools', [
@@ -113,12 +133,16 @@ app.post('/schools', [
   body('tahun_berdiri', 'Tahun berdiri tidak boleh kosong').notEmpty(),
   body('jumlah_siswa', 'Jumlah siswa tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
+    }
+    await Model.Schools.create(req.body);
+    return res.json({ message: 'Sekolah berhasil ditambahkan!' });
+  } catch (error) {
+    return res.json(error)
   }
-  await Model.Schools.create(req.body);
-  return res.json({ message: 'Sekolah berhasil ditambahkan!' });
 });
 
 app.post('/sellers', [
@@ -128,12 +152,16 @@ app.post('/sellers', [
   body('kontak', 'Kontak tidak boleh kosong').notEmpty(),
   body('jumlah_produk', 'Jumlah produk tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
+    }
+    await Model.Sellers.create(req.body);
+    return res.json({ message: 'Pedagang berhasil ditambahkan!' });
+  } catch (error) {
+    return res.json(error)
   }
-  await Model.Sellers.create(req.body);
-  return res.json({ message: 'Pedagang berhasil ditambahkan!' });
 });
 
 app.post('/medicines', [
@@ -143,12 +171,16 @@ app.post('/medicines', [
   body('harga', 'Harga tidak boleh kosong').notEmpty(),
   body('stok', 'stok tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
+    }
+    await Model.Medicines.create(req.body);
+    return res.json({ message: 'Obat berhasil ditambahkan!' });
+  } catch (error) {
+    return res.json(error)
   }
-  await Model.Medicines.create(req.body);
-  return res.json({ message: 'Obat berhasil ditambahkan!' });
 });
 
 app.patch('/books/:id', [
@@ -159,16 +191,20 @@ app.patch('/books/:id', [
   body('harga', 'Harga tidak boleh kosong').notEmpty().isInt(),
   body('stok', 'Stok tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
-  }
-  await Model.Books.update(req.body, {
-    where: {
-      id: req.params.id
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
     }
-  });
-  return res.json({ message: 'Buku berhasil diubah!' });
+    await Model.Books.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    return res.json({ message: 'Buku berhasil diubah!' });
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.patch('/schools/:id', [
@@ -178,16 +214,20 @@ app.patch('/schools/:id', [
   body('tahun_berdiri', 'Tahun berdiri tidak boleh kosong').notEmpty(),
   body('jumlah_siswa', 'Jumlah siswa tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
-  }
-  await Model.Schools.update(req.body, {
-    where: {
-      id: req.params.id
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
     }
-  });
-  return res.json({ message: 'Sekolah berhasil diubah!' });
+    await Model.Schools.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    return res.json({ message: 'Sekolah berhasil diubah!' });
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.patch('/sellers/:id', [
@@ -197,16 +237,20 @@ app.patch('/sellers/:id', [
   body('kontak', 'Kontak tidak boleh kosong').notEmpty(),
   body('jumlah_produk', 'Jumlah produk tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
-  }
-  await Model.Sellers.update(req.body, {
-    where: {
-      id: req.params.id
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
     }
-  });
-  return res.json({ message: 'Pedagang berhasil diubah!' });
+    await Model.Sellers.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    return res.json({ message: 'Pedagang berhasil diubah!' });
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.patch('/medicines/:id', [
@@ -216,16 +260,20 @@ app.patch('/medicines/:id', [
   body('harga', 'Harga tidak boleh kosong').notEmpty(),
   body('stok', 'stok tidak boleh kosong').notEmpty().isInt(),
 ], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.json({ errors: errors.array() });
-  }
-  await Model.Medicines.update(req.body, {
-    where: {
-      id: req.params.id
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
     }
-  });
-  return res.json({ message: 'Obat berhasil diubah!' });
+    await Model.Medicines.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    });
+    return res.json({ message: 'Obat berhasil diubah!' });
+  } catch (error) {
+    return res.json(error)
+  }
 });
 
 app.delete('/books/:id', async (req, res) => {
