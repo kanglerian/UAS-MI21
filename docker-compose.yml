@@ -1,0 +1,8 @@
+version: '3'
+services:
+  app:
+    image: uas_mi21
+    volumes:
+      - /home/lerian:/app
+    ports:
+      - 3031:3031
