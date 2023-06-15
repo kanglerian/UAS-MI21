@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./app.css">
+  <title>Document</title>
+</head>
+
+<body class="bg-gray-100">
+  <header class="container text-center mx-auto p-4 space-y-2">
+    <h1 class="text-2xl font-bold">Ujian Akhir Semester Genap 2023</h1>
+    <p class="text-gray-700 text-sm">Berikut ini adalah daftar nama dan soal UAS Front End Development.</p>
+    <h3 class="inline-block bg-red-500 px-4 py-1 text-white rounded">Deadline Project UAS</h3>
+    <div class="text-lg">
+      <span id="daysContent">6 Hari</span>
+      <span id="hoursContent">5 Jam</span>
+      <span id="minutesContent">25 Menit</span>
+      <span id="secondsContent">37 Detik</span>
+    </div>
+  </header>
+  <section class="container mx-auto p-4">
+    <div class="flex flex-col md:flex-row gap-5">
+      <div class="w-full md:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <h1 class="text-center font-bold text-lg mb-2">Kelas MI21A</h1>
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Nama lengkap
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Kode
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Soal
+              </th>
+            </tr>
+          </thead>
+          <tbody id="resultA"></tbody>
+        </table>
+      </div>
+      <div class="w-full md:w-1/2 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <h1 class="text-center font-bold text-lg mb-2">Kelas MI21B</h1>
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                No
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Nama lengkap
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Kode
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Soal
+              </th>
+            </tr>
+          </thead>
+          <tbody id="resultB"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <footer class="py-2">
+    <p class="text-xs text-center text-gray-700">© 2023 Lerian Febriana, A.Md.Kom LP3I | All rights reserved.</p>
+  </footer>
+  <script>
+    const getDataMI21A = () => {
+      let bucket = '';
+      const data = [
+        { nama: 'Aditya Nurdiansyah', kodeSoal: 3 },
+        { nama: 'Aldi Gilang Maulana', kodeSoal: 3 },
+        { nama: 'Arya Irawan', kodeSoal: 1 },
+        { nama: 'Asep Yoga Firmansyah', kodeSoal: 1 },
+        { nama: 'Awali Wayan Firmandiansyah', kodeSoal: 4 },
+        { nama: 'Dede Munawar Risman', kodeSoal: 4 },
+        { nama: 'Enggar Aouna Muharam', kodeSoal: 3 },
+        { nama: 'Fakhri Zaki Muhtarom', kodeSoal: 1 },
+        { nama: 'Firada Tahta Winata', kodeSoal: 2 },
+        { nama: 'Gilang Ihza Permana', kodeSoal: 2 },
+        { nama: 'Julius Wijaya Susanto', kodeSoal: 2 },
+        { nama: 'Muhammad Alfan Alfazar', kodeSoal: 4 },
+        { nama: 'Muhammad Noer Alfiansyah', kodeSoal: 2 },
+        { nama: 'Ramdan Hidayat', kodeSoal: 1 },
+        { nama: 'Restu Fauzi Lesmana', kodeSoal: 1 },
+        { nama: 'Salma Salsabila', kodeSoal: 2 }
+      ];
+      data.forEach((mahasiswa, i) => {
+        bucket += `
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              ${i + 1}
+            </th>
+            <td class="px-6 py-4">
+              ${mahasiswa.nama}
+            </td>
+            <td class="px-6 py-4">
+              ${mahasiswa.kodeSoal}
+            </td>
+            <td class="px-6 py-4 text-left">
+              <a href="soal-${mahasiswa.kodeSoal}-UAS-mi21.pdf" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" download>Download</a>
+            </td>
+          </tr>
+        `
+      });
+      document.getElementById('resultA').innerHTML = bucket;
+    }
+    getDataMI21A();
+  </script>
+  <script>
+    const getDataMI21B = () => {
+      let bucket = '';
+      const data = [
+        { nama: 'Aldi Azhari', kodeSoal: 3 },
+        { nama: 'Auladi Alfa Rizki Sodikin', kodeSoal: 3 },
+        { nama: 'Dhila Rakhma Fajriati', kodeSoal: 2 },
+        { nama: 'Egi', kodeSoal: 3 },
+        { nama: 'Fahmi Awaludin', kodeSoal: 2 },
+        { nama: 'Fitran Iman Ramadhan', kodeSoal: 4 },
+        { nama: 'Muhammad Haedar Ali', kodeSoal: 4 },
+        { nama: 'Itban Mubarak', kodeSoal: 1 },
+        { nama: 'M Iqbal Faturachman', kodeSoal: 3 },
+        { nama: 'Naufal Fawwaz Badrani', kodeSoal: 2 },
+        { nama: 'M. Nurdin', kodeSoal: 3 },
+        { nama: 'Redza Maulana Fazar', kodeSoal: 2 },
+        { nama: 'Rizki Zapar Sidiq', kodeSoal: 1 },
+        { nama: 'Selvia Nirmala', kodeSoal: 2 },
+        { nama: 'Vani Ayu Anastasya', kodeSoal: 4 },
+        { nama: 'Yuanda Zahra Aulia', kodeSoal: 3 }
+      ];
+      data.forEach((mahasiswa, i) => {
+        bucket += `
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              ${i + 1}
+            </th>
+            <td class="px-6 py-4">
+              ${mahasiswa.nama}
+            </td>
+            <td class="px-6 py-4">
+              ${mahasiswa.kodeSoal}
+            </td>
+            <td class="px-6 py-4 text-left">
+              <a href="soal-${mahasiswa.kodeSoal}-UAS-mi21.pdf" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" download>Download</a>
+            </td>
+          </tr>
+        `
+      });
+      document.getElementById('resultB').innerHTML = bucket;
+    }
+    getDataMI21B();
+  </script>
+  <script>
+    function countdownToTargetDate(targetDate) {
+      const targetTime = new Date(targetDate).getTime();
+
+      const countdownInterval = setInterval(() => {
+        const currentTime = new Date().getTime();
+        const timeDifference = targetTime - currentTime;
+
+        if (timeDifference <= 0) {
+          clearInterval(countdownInterval);
+          console.log("Countdown selesai!");
+        } else {
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+          document.getElementById('daysContent').innerText = `${days} Hari`;
+          document.getElementById('hoursContent').innerText = `${hours} Jam`;
+          document.getElementById('minutesContent').innerText = `${minutes} Menit`;
+          document.getElementById('secondsContent').innerText = `${seconds} Detik`;
+        }
+      }, 1000);
+    }
+
+    // Contoh penggunaan: hitung mundur hingga 22 Juni 2023
+    const targetDate = "2023-06-22";
+    countdownToTargetDate(targetDate);
+  </script>
+</body>
+
+</html>
