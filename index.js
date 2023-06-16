@@ -24,9 +24,7 @@ app.get('/', (req, res) => {
 app.get('/books', async (req, res) => {
   try {
     const books = await Model.Books.findAll();
-    return res.json({
-      data: books
-    });
+    return res.json(books);
   } catch (error) {
     return res.json(error)
   }
