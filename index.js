@@ -5,11 +5,14 @@ const { PORT } = process.env;
 
 import express from 'express';
 import { body, validationResult } from 'express-validator';
+import cors from 'cors';
+
 import Model from './models/index.js';
 
 const app = express();
 const port = PORT;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
