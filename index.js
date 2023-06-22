@@ -8,11 +8,10 @@ import https from 'https';
 import { body, validationResult } from 'express-validator';
 import cors from 'cors';
 
-const httpsSever = https.createServer(app);
-
 import Model from './models/index.js';
 
 const app = express();
+const httpsSever = https.createServer(app);
 const port = PORT;
 
 app.use(cors());
