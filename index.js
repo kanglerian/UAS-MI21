@@ -4,8 +4,11 @@ dotenv.config();
 const { PORT } = process.env;
 
 import express from 'express';
+import https from 'https';
 import { body, validationResult } from 'express-validator';
 import cors from 'cors';
+
+const httpsSever = https.createServer(app);
 
 import Model from './models/index.js';
 
@@ -331,6 +334,6 @@ app.delete('/medicines/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+httpsSever.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
